@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\obatcontroller;
+use App\Http\Controllers\ObatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +22,10 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Data siswa
-Route::get('/jual_obat/', [obatcontroller::class, 'index'])->middleware('auth');
-Route::get('/jual_obat/form/', [obatcontroller::class, 'create'])->middleware('auth');
+// Data Penjualan Obat
+Route::get('/jual/', [ObatController::class, 'index'])->middleware('auth');
+Route::get('/jual/form/', [ObatController::class, 'create'])->middleware('auth');
+Route::post('/jual/store/', [ObatController::class, 'store'])->middleware('auth');
+Route::get('/jual/edit/{nisn}', [ObatController::class, 'edit'])->middleware('auth');
+Route::put('/jual/{nisn}', [ObatController::class, 'update'])->middleware('auth');
+Route::delete('/jual/{nisn}', [ObatController::class, 'destroy'])->middleware('auth');

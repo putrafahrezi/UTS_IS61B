@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Obat;
 
-class obatController extends Controller
+class ObatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class obatController extends Controller
     {
         $nomor = 1;
         $obt = Obat::all();
-        return view('jual_obat.index',compact('nomor','obt'));
+        return view('jual.index', compact('nomor', 'obt'));
     }
 
     /**
@@ -22,7 +22,7 @@ class obatController extends Controller
      */
     public function create()
     {
-        return view('jual_obat.form');
+        return view('jual.form');
     }
 
     /**
@@ -31,20 +31,20 @@ class obatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kd_obt' => 'required|unique:kd_obt',
-            'nm_obt' => 'required',
-            'jenis' => 'required',
-            'jumlah' => 'required'
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
         ]);
 
         $obt = new Obat;
-        $obt->id = $request->id;
-        $obt->nm_obt = $request->nm_obt;
-        $obt->jenis = $request->jenis;
-        $obt->jumlah = $request->jumlah;
+        $obt->name = $request->name;
+        $obt->description = $request->description;
+        $obt->price = $request->price;
+        $obt->stock = $request->stock;
         $obt->save();
 
-        return redirect('/jual_obat/');
+        return redirect('/jual/')->with('success', 'Data pelajaran berhasil disimpan');
     }
 
     /**
@@ -62,9 +62,48 @@ class obatController extends Controller
     {
         $obt = Obat::find($id);
         if ($obt) {
-            return view('jual_obat.edit', compact('obt'));
+            return view('jual.edit', compact('obt'));
         } else {
-            return redirect('/jual_obat/')->withErrors('Data tidak ditemukan');
+            return redirect('/jual/')->withErrors('Data tidak ditemukan');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+        ]);
+
+        $pel = Pelajaran::find($id);
+        if ($pel) {
+            $obt->name = $request->name;
+            $obt->description = $request->description;
+            $obt->price = $request->price;
+            $obt->stock = $request->stock;
+            $pel->save();
+            return redirect('/jual/')->with('success', 'Data pelajaran berhasil diupdate');
+        } else {
+            return redirect('/jual/')->withErrors('Data tidak ditemukan');
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $obt = Obat::find($id);
+        if ($obt) {
+            $obt->delete();
+            return redirect('/jual/')->with('success', 'Data pelajaran berhasil dihapus');
+        } else {
+            return redirect('/jual/')->withErrors('Data tidak ditemukan');
         }
     }
 }
