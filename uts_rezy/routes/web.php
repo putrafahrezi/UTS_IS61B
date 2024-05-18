@@ -26,6 +26,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/jual/', [ObatController::class, 'index'])->middleware('auth');
 Route::get('/jual/form/', [ObatController::class, 'create'])->middleware('auth');
 Route::post('/jual/store/', [ObatController::class, 'store'])->middleware('auth');
-Route::get('/jual/edit/{nisn}', [ObatController::class, 'edit'])->middleware('auth');
-Route::put('/jual/{nisn}', [ObatController::class, 'update'])->middleware('auth');
-Route::delete('/jual/{nisn}', [ObatController::class, 'destroy'])->middleware('auth');
+Route::get('/jual/edit/{id}', [ObatController::class, 'edit'])->middleware('auth');
+Route::put('/jual/{id}', [ObatController::class, 'update'])->middleware('auth');
+Route::delete('/jual/{id}', [ObatController::class, 'destroy'])->middleware('auth');

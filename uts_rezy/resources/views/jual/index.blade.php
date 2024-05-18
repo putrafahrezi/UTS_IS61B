@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title','Data Pelajaran')
-@section('judul','Data Pelajaran')
+@section('title','Data obat')
+@section('judul','Data obat')
 @section('nama','Apoktek Shafiqa Farma')
 @section('content')
 <!-- Begin Page Content -->
@@ -58,7 +58,7 @@
                                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                    Yakin ingin menghapus data Pelajran <b>{{$item->name}}</b>?
+                                    Yakin ingin menghapus data obat <b>{{$item->name}}</b>?
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

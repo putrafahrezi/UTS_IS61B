@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Edit Pelajaran')
+@section('title', 'Edit obat')
 
 @section('content')
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Edit Penjualan Obat/h1>
+    <h1 class="h3 mb-4 text-gray-800">Edit Penjualan Obat
 
     <div class="card shadow mb-4">
         <div class="card-body">

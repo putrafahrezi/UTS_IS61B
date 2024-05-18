@@ -44,7 +44,7 @@ class ObatController extends Controller
         $obt->stock = $request->stock;
         $obt->save();
 
-        return redirect('/jual/')->with('success', 'Data pelajaran berhasil disimpan');
+        return redirect('/jual/')->with('success', 'Data obat berhasil disimpan');
     }
 
     /**
@@ -80,14 +80,14 @@ class ObatController extends Controller
             'stock' => 'required',
         ]);
 
-        $pel = Pelajaran::find($id);
-        if ($pel) {
+        $obt = Obat::find($id);
+        if ($obt) {
             $obt->name = $request->name;
             $obt->description = $request->description;
             $obt->price = $request->price;
             $obt->stock = $request->stock;
-            $pel->save();
-            return redirect('/jual/')->with('success', 'Data pelajaran berhasil diupdate');
+            $obt->save();
+            return redirect('/jual/')->with('success', 'Data obat berhasil diupdate');
         } else {
             return redirect('/jual/')->withErrors('Data tidak ditemukan');
         }
@@ -101,7 +101,7 @@ class ObatController extends Controller
         $obt = Obat::find($id);
         if ($obt) {
             $obt->delete();
-            return redirect('/jual/')->with('success', 'Data pelajaran berhasil dihapus');
+            return redirect('/jual/')->with('success', 'Data obat berhasil dihapus');
         } else {
             return redirect('/jual/')->withErrors('Data tidak ditemukan');
         }
