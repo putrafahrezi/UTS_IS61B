@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\obatcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Data siswa
+Route::get('/jual_obat/', [obatcontroller::class, 'index'])->middleware('auth');
+Route::get('/jual_obat/form/', [obatcontroller::class, 'create'])->middleware('auth');
